@@ -73,7 +73,7 @@ public class EmployeeController {
             @RequestParam(defaultValue = "1") int level
     ){
         try {
-            // Validate input parameters
+
             if (level < 1) {
                 return ResponseEntity.badRequest().body("Level must be 1 or greater");
             }
@@ -84,7 +84,7 @@ public class EmployeeController {
                 return ResponseEntity.ok("No manager found at this level");
             }
 
-            // Creating a DTO to return only necessary information
+
             Map<String, String> managerInfo = new HashMap<>();
             managerInfo.put("id", manager.getId());
             managerInfo.put("name", manager.getEmployeeName());

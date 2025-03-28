@@ -31,6 +31,9 @@ public class EmployeeService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private EmailService emailService;
+
     public List<Employee> getAll()
     {
         List<Employee> list=employeeRepo.getAll();
@@ -63,6 +66,11 @@ public class EmployeeService {
 
 
         employeeRepo.add(employee);
+
+        Employee manager = getNthLevelManager(employee.getId(), 1);
+        if (manager != null) {
+            emailService.sendManagerNotification(manager.getEmail(), employee.getEmployeeName(), employee.getPhoneNumber(), employee.getEmail());
+        }
 
         return employee.getId();
     }

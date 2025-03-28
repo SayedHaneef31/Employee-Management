@@ -22,6 +22,16 @@ public class EmployeeRepo extends CouchDbRepositorySupport<Employee> {
         initStandardDesignDocument();
     }
 
+
+//    public void addNewEmployee(Employee employee) {
+//        add(employee); // Save to CouchDB
+//
+//        String managerEmail = getManagerEmail(employee); // Implement logic to get Level 1 Manager's email
+//        if (managerEmail != null) {
+//            emailService.sendManagerNotification(managerEmail, employee.getEmployeeName(), employee.getPhoneNumber(), employee.getEmail());
+//        }
+//    }
+
     public Employee findByEmail(String email) {
         List<Employee> employees = getAll();
         return employees.stream()
